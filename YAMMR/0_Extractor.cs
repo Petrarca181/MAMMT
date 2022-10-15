@@ -41,7 +41,9 @@ public static class Extractor
         finally
         {
             br.Dispose();
+            br.Close();
             await fs.DisposeAsync();
+            fs.Close();
         }
     }
 
