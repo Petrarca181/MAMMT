@@ -9,6 +9,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.gitignore
+*.gitattributes
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -340,8 +342,7 @@ ASALocalRun/
 
 # MSBuild Binary and Structured Log
 *.binlog
-.gitignore
-.gitattributes
+
 
 # NVidia Nsight GPU debugger configuration file
 *.nvuser
