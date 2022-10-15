@@ -74,7 +74,8 @@ internal class Repacktor
     )
     {
         // Now lets do some quick math
-        var longestString = files.Select(x => x.Name).Max(y => y)!.Length;
+        var longestString = files.Select(x => x.Name).Max(y => y.Length);
+         MessageBox.Show(longestString.ToString());
         var fileNumber = files.Count;
 
         var pack = new List<byte>();
