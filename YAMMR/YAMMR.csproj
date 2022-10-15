@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<ApplicationIcon>Assets\pizza.ico</ApplicationIcon>
+		<SelfContained>false</SelfContained>
+		<RuntimeIdentifier>win-x86</RuntimeIdentifier>
+		<PublishReadyToRun>true</PublishReadyToRun>
+		<IncludeAllContentForSelfExtract>True</IncludeAllContentForSelfExtract>
+		<Platforms>x86</Platforms>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="Assets\kek.gif" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Assets\kek.gif">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Assets\pizza.ico">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
+	</ItemGroup>
+
+</Project>
