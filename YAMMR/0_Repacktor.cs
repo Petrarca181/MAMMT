@@ -16,7 +16,18 @@ internal class Repacktor
         try
         {
             var dirInfo = new DirectoryInfo(path);
-            var files = dirInfo.GetFiles().ToList();
+
+            var files = dirInfo.GetFiles().Where(x => x.Name != "mamma.mia").ToList();
+            if (File.Exists(path + "\\mamma.mia"))
+            {
+                var fileOrder = (await File.ReadAllLinesAsync(path + "\\mamma.mia")).ToList();
+                var newFiles = files.Where(y => fileOrder.IndexOf(y.Name) == -1);
+                files = files
+                    .Where(y => fileOrder.IndexOf(y.Name) != -1)
+                    .OrderBy(x => fileOrder.IndexOf(x.Name))
+                    .ToList();
+                files.AddRange(newFiles);
+            }
 
             var filePath =
                 path[..path.LastIndexOf("_", StringComparison.Ordinal)]
@@ -51,6 +62,7 @@ internal class Repacktor
 
         var hashTuple = files
             .Select((t, i) => ((int)(Crc32String(t.Name.ToLower()) & 0x7FFFFFFF), (short)i))
+            .OrderBy(x => x.Item1 >> shift)
             .ToList();
 
         for (var i = 0; i < files.Count; i++)

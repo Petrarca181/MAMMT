@@ -100,6 +100,7 @@ public static class Extractor
     {
         var dirName = Regex.Replace(Path.GetFullPath(filepath), ".([^\\.]+)$", "_$1") + "\\";
         Directory.CreateDirectory(dirName);
+        await File.WriteAllLinesAsync(dirName + "\\mamma.mia",files.Select(x=>x.Name)!);
 
         foreach (var file in files)
         {
