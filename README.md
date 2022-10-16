@@ -1,4 +1,4 @@
-# YAMM
+# YAMMR
 
 Yet Another Mamma Mia Repacker, made purely for meme purposes.    
 Why not python? Python is for pussies!(Joking don't cancel me on twitter please)
