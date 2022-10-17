@@ -15,6 +15,8 @@
 
 	<ItemGroup>
 		<None Remove="Assets\kek.gif" />
+		<None Remove="Resources\CpkMaker.dll" />
+		<None Remove="Resources\Pasta.dll" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -24,10 +26,19 @@
 		<Content Include="Assets\pizza.ico">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+		<Content Include="Resources\CpkMaker.dll">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="CpkMaker">
+	    <HintPath>Resources\CpkMaker.dll</HintPath>
+	  </Reference>
 	</ItemGroup>
 
 </Project>

@@ -21,10 +21,30 @@ public partial class MainWindow
 
         var files = e.Data.GetData(DataFormats.FileDrop) as string[] ?? Array.Empty<string>();
 
+       
+        
         foreach (var file in files)
-            if (Directory.Exists(file))
-                await Repacktor.RepackHub(file);
-            else
-                await Task.Run(() => Extractor.UnPack(file));
+            switch (file.Substring(file.Length-4,4))
+            {
+                case ".dat":
+                    await Task.Run(() => Extractor.UnPack(file));
+                    break;
+                case ".dtt":
+                    await Task.Run(() => Extractor.UnPack(file));
+                    break;
+                case ".cpk":
+                    CPK.Unpack(file);
+                    break;
+                case "_dat":
+                    await Repacktor.RepackHub(file);
+                    break;
+                case "_dtt":
+                    await Repacktor.RepackHub(file);
+                    break;
+                case "_cpk":
+                    break;
+            }
+
+       
     }
 }
