@@ -12,4 +12,6 @@ Usage:
 Drag files to unpack    
 Drag folders to repack. Tool will expect folder names like something_dat, something_dtt or something_cpk 
 
+[Download](https://github.com/Petrarca181/MAMMT/releases/download/Download/MAMMT.exe)
+
 .NET6 dependent. 
