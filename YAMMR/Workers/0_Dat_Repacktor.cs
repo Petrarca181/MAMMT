@@ -45,7 +45,14 @@ internal class Repacktor
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Failed to repack files!\n\n" + ex.Message, "Error!");
+            MessageBox.Show(
+                "Failed to repack files!\n\n" + ex.Message,
+                "Error!",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error,
+                MessageBoxResult.OK,
+                MessageBoxOptions.DefaultDesktopOnly
+            );
         }
         finally
         {
@@ -176,7 +183,7 @@ internal class Repacktor
             var (fileBytes, length) = File2Bytes(files[i].FullName);
             await fileStream.WriteAsync(fileBytes.AsMemory(0, length));
 
-            Mwvm.MainWpf!.Progress = $"Current progress {i+1}/{files.Count}";
+            Mwvm.MainWpf!.Progress = $"Current progress {i + 1}/{files.Count}";
         }
     }
 }

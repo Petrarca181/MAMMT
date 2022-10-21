@@ -33,7 +33,14 @@ internal class Cpk
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, "Error!");
+            MessageBox.Show(
+                ex.Message,
+                "Error!",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error,
+                MessageBoxResult.OK,
+                MessageBoxOptions.DefaultDesktopOnly
+            );
         }
         finally
         {
@@ -92,7 +99,9 @@ internal class Cpk
                     + "Warning! Compression will be much higher than original one, also time to packing files will be longer",
                 "Compression",
                 MessageBoxButton.YesNo,
-                MessageBoxImage.Exclamation
+                MessageBoxImage.Exclamation,
+                MessageBoxResult.No,
+                MessageBoxOptions.DefaultDesktopOnly
             );
 
             for (var i = 0; i < files.Length; i++)

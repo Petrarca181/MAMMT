@@ -12,6 +12,11 @@
 		<IncludeAllContentForSelfExtract>True</IncludeAllContentForSelfExtract>
 		<Platforms>x86;x64</Platforms>
 	</PropertyGroup>
+	
+	<ItemGroup>
+	  <None Remove="CpkBinder.dll" />
+	  <None Remove="CpkMaker.dll" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<Content Include="Assets\kek.gif">
@@ -19,6 +24,12 @@
 		</Content>
 		<Content Include="Assets\pizza.ico">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="CpkBinder.dll">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="CpkMaker.dll">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
 
@@ -28,8 +39,7 @@
 
 	<ItemGroup>
 	  <Reference Include="CpkMaker">
-	    <HintPath>Resources\CpkMaker.dll</HintPath>
-	    <Private>True</Private>
+	    <HintPath>CpkMaker.dll</HintPath>
 	  </Reference>
 	</ItemGroup>
 

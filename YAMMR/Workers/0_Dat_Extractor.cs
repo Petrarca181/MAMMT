@@ -27,7 +27,10 @@ public static class Extractor
                 MessageBox.Show(
                     Path.GetFileName(filepath) + " is not supported, skipping...",
                     "Error!",
-                    MessageBoxButton.OK
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error,
+                    MessageBoxResult.OK,
+                    MessageBoxOptions.DefaultDesktopOnly
                 );
                 return;
             }

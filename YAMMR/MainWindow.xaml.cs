@@ -47,8 +47,10 @@ public partial class MainWindow
                             + $"Tool is expecting xxx.dat, xxx.dtt, xxx.cpk files to unpack.\n"
                             + $"xxx_dat, xxx_dtt, xxx_cpk folders to pack.",
                         "Warning!",
-                        MessageBoxButton.YesNo,
-                        MessageBoxImage.Error
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error,
+                        MessageBoxResult.OK,
+                        MessageBoxOptions.DefaultDesktopOnly
                     );
                     break;
             }
