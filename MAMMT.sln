@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MAMMT", "YAMMR\MAMMT.csproj", "{E4688A42-06F9-43B4-BB47-D2D49467992A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MAMMT", "MAMMT\MAMMT.csproj", "{E4688A42-06F9-43B4-BB47-D2D49467992A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
