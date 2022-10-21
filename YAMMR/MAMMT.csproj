@@ -10,14 +10,8 @@
 		<RuntimeIdentifier>win-x86</RuntimeIdentifier>
 		<PublishReadyToRun>true</PublishReadyToRun>
 		<IncludeAllContentForSelfExtract>True</IncludeAllContentForSelfExtract>
-		<Platforms>x86</Platforms>
+		<Platforms>x86;x64</Platforms>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<None Remove="Assets\kek.gif" />
-		<None Remove="Resources\CpkMaker.dll" />
-		<None Remove="Resources\Pasta.dll" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<Content Include="Assets\kek.gif">
@@ -25,9 +19,6 @@
 		</Content>
 		<Content Include="Assets\pizza.ico">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="Resources\CpkMaker.dll">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
 
@@ -38,6 +29,7 @@
 	<ItemGroup>
 	  <Reference Include="CpkMaker">
 	    <HintPath>Resources\CpkMaker.dll</HintPath>
+	    <Private>True</Private>
 	  </Reference>
 	</ItemGroup>
 

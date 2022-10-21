@@ -1,4 +1,4 @@
-﻿namespace YAMMR;
+﻿namespace MAMMT;
 
 public partial class App
 {

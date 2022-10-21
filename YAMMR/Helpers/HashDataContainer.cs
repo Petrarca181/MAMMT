@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace YAMMR.Helpers;
+namespace MAMMT.Helpers;
 
 internal class HashDataContainer
 {

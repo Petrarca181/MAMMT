@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace YAMMR.Helpers;
+namespace MAMMT.Helpers;
 
 public class Crc32
 {

@@ -4,10 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using YAMMR.Helpers;
-using static YAMMR.Helpers.Converters;
+using MAMMT.Helpers;
+using static MAMMT.Helpers.Converters;
 
-namespace YAMMR;
+namespace MAMMT.Workers;
 
 internal class Repacktor
 {
@@ -15,6 +15,8 @@ internal class Repacktor
     {
         try
         {
+            Mwvm.MainWpf!.Caption = "Packing...";
+
             var dirInfo = new DirectoryInfo(path);
 
             var files = dirInfo.GetFiles().Where(x => x.Name != "mamma.mia").ToList();
@@ -45,6 +47,13 @@ internal class Repacktor
         {
             MessageBox.Show("Failed to repack files!\n\n" + ex.Message, "Error!");
         }
+        finally
+        {
+            Mwvm.MainWpf!.Caption = "Done!";
+            await Task.Delay(2000);
+            Mwvm.MainWpf!.Caption = "Ready!";
+            Mwvm.MainWpf!.Progress = string.Empty;
+        }
     }
 
     private static HashDataContainer GenerateHash(IReadOnlyCollection<FileInfo> files)
@@ -57,7 +66,7 @@ internal class Repacktor
         */
 
         var shift = Math.Min(31, 32 - IntLength(files.Count));
-        var bucketSize = 1 << (31 - shift);
+        var bucketSize = 1 << 31 - shift;
         var bucketTable = Enumerable.Repeat((short)-1, bucketSize).ToList();
 
         var hashTuple = files
@@ -97,7 +106,7 @@ internal class Repacktor
         pack.AddRange(Int2Byte(32)); // File offsets table offset -> 32 is total header size.
         pack.AddRange(Int2Byte(32 + fileNumber * 4)); // Extensions table offsets
         pack.AddRange(Int2Byte(32 + fileNumber * 8)); // File names table offset
-        pack.AddRange(Int2Byte(36 + fileNumber * (9 + longestString))); // File sizes table offset -> Don't forget there are additions 4 bytes for max name length before names table!
+        pack.AddRange(Int2Byte(36 + fileNumber * (9 + longestString))); // File sizes table offset -> Don't forget there are additional 4 bytes for max name length before names table!
         pack.AddRange(Int2Byte(36 + fileNumber * (13 + longestString))); // HashData table offset
         pack.AddRange(Str2Byte(string.Empty, 7 + fileNumber * (13 + longestString))); // Dummy bytes(total tables length minus header), will be filled later.
 
@@ -166,6 +175,8 @@ internal class Repacktor
             fileStream.Seek(0, SeekOrigin.End);
             var (fileBytes, length) = File2Bytes(files[i].FullName);
             await fileStream.WriteAsync(fileBytes.AsMemory(0, length));
+
+            Mwvm.MainWpf!.Progress = $"Current progress {i+1}/{files.Count}";
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿<Window
-    x:Class="YAMMR.MainWindow"
+    x:Class="MAMMT.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:YAMMR"
+    xmlns:mammt="clr-namespace:MAMMT"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:wpfAnimatedGif="http://wpfanimatedgif.codeplex.com"
     Title="Mamma Mia!"
@@ -14,12 +14,39 @@
     ResizeMode="NoResize"
     WindowStyle="SingleBorderWindow"
     mc:Ignorable="d">
+    <Window.DataContext>
+        <mammt:Mwvm />
+    </Window.DataContext>
+
     <Grid AllowDrop="True">
 
         <Image
             Width="250"
             Height="250"
             wpfAnimatedGif:ImageBehavior.AnimatedSource="Assets/kek.gif" />
+
+        <Label
+            x:Name="Caption"
+            Width="250"
+            Height="30"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#7FFFFFFF"
+            Content="{Binding Caption}"
+            FontSize="15"
+            FontWeight="Bold" />
+
+        <Label
+            x:Name="Progress"
+            Width="250"
+            Height="30"
+            Margin="0,60,0,0"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#7FFFFFFF"
+            Content="{Binding Progress}"
+            FontSize="15"
+            FontWeight="Bold" />
 
     </Grid>
 

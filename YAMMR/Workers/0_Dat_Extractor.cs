@@ -5,15 +5,16 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
-using YAMMR.Helpers;
-using static YAMMR.Helpers.Converters;
+using MAMMT.Helpers;
+using static MAMMT.Helpers.Converters;
 
-namespace YAMMR;
+namespace MAMMT.Workers;
 
 public static class Extractor
 {
     public static async void UnPack(string filepath)
     {
+        Mwvm.MainWpf!.Caption = "Unpacking files...";
         FileStream fs = null!;
         BinaryReader br = null!;
         try
@@ -44,6 +45,10 @@ public static class Extractor
             br.Close();
             await fs.DisposeAsync();
             fs.Close();
+            Mwvm.MainWpf!.Caption = "Done!";
+            await Task.Delay(2000);
+            Mwvm.MainWpf!.Caption = "Ready!";
+            Mwvm.MainWpf!.Progress = string.Empty;
         }
     }
 
@@ -100,16 +105,19 @@ public static class Extractor
     {
         var dirName = Regex.Replace(Path.GetFullPath(filepath), ".([^\\.]+)$", "_$1") + "\\";
         Directory.CreateDirectory(dirName);
-        await File.WriteAllLinesAsync(dirName + "\\mamma.mia",files.Select(x=>x.Name)!);
+        await File.WriteAllLinesAsync(dirName + "\\mamma.mia", files.Select(x => x.Name)!);
 
-        foreach (var file in files)
+        for (var i = 0; i < files.Count; i++)
         {
+            var file = files[i];
             br.BaseStream.Seek(file.Offset, SeekOrigin.Begin);
             var fileContent = br.ReadBytes(file.Size);
 
             FileStream fs = new(dirName + file.Name, FileMode.Create);
             await fs.WriteAsync(fileContent);
             fs.Close();
+
+            Mwvm.MainWpf!.Progress = $"Current progress {i+1}/{files.Count}";
         }
     }
 }
